@@ -1,18 +1,7 @@
 import { Modal } from "antd";
+import { IReMOdalProps } from "./Interfaces/ReComponents.interface";
 
-function ReModal(props: {
-  children: any;
-  title?: string | React.ReactNode;
-  visibility?: boolean;
-  footer?: boolean | React.ReactNode;
-  onOkay?: Function;
-  onCancel: Function;
-  width?: number;
-  height?: number;
-  closable?: boolean;
-  onOkayBtnTitle?: string;
-  centered?: boolean;
-}) {
+function ReModal(props: IReMOdalProps) {
   const {
     children,
     onOkay,
@@ -42,7 +31,7 @@ function ReModal(props: {
         onCancel();
       }}
       footer={footer}
-      bodyStyle={{maxHeight: `${height || 500}px`, overflow: "scroll"}}
+      bodyStyle={{ maxHeight: `${height || 500}px`, overflow: "scroll" }}
     >
       {children}
     </Modal>

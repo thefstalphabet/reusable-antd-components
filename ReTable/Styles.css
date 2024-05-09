@@ -1,8 +1,0 @@
-.table .ant-table-body::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
-
-.table .ant-table-body::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-}

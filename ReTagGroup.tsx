@@ -1,41 +1,27 @@
 import { Tag } from "antd";
-import { ReactNode } from "react";
 import { CloseOutlined } from "@ant-design/icons";
+import {
+  IReTagGroupProps,
+  ITagItem,
+} from "./Interfaces/ReComponents.interface";
 
-interface ITabItems {
-  title: string;
-  key: string;
-  color?: string;
-}
-
-interface IProps {
-  styles?: any;
-  items: ITabItems[];
-  setItems: Function;
-  closeIcon?: ReactNode;
-}
-
-function ReTagGroup(props: IProps) {
+function ReTagGroup(props: IReTagGroupProps) {
   const { styles, items, setItems, closeIcon } = props;
-
   const defaultStyles = {};
-
   const handleRemove = (id: string) => {
-    let newItems = items.filter((ele: any) => ele.key !== id)
+    let newItems = items.filter((ele: any) => ele.key !== id);
     console.log(newItems);
-    
-    setItems(newItems)
+
+    setItems(newItems);
   };
 
   return (
     <div style={styles ? styles : defaultStyles}>
-      {items.map((tag: ITabItems) => {
+      {items.map((tag: ITagItem) => {
         const { title, key, color } = tag;
         return (
           <Tag
-            closeIcon={
-              closeIcon ? closeIcon : <CloseOutlined />
-            }
+            closeIcon={closeIcon ? closeIcon : <CloseOutlined />}
             closable={setItems ? true : false}
             onClose={() => {
               handleRemove(key);

@@ -1,16 +1,7 @@
 import { Drawer } from "antd";
+import { IReDrawerProps } from "./Interfaces/ReComponents.interface";
 
-function ReDrawer(props: {
-  children: any;
-  visibility: boolean;
-  title?: string | React.ReactNode;
-  footer?: boolean | React.ReactNode;
-  onCancel?: Function;
-  width?: number;
-  placement?: "top" | "right" | "bottom" | "left";
-  closable?: boolean;
-  extraContent?:React.ReactNode
-}) {
+function ReDrawer(props: IReDrawerProps) {
   const {
     children,
     title,

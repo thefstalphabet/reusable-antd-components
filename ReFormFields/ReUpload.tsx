@@ -1,22 +1,9 @@
 import { UploadOutlined } from "@ant-design/icons";
 import { Upload, Button, UploadProps, Form } from "antd";
 import React, { useEffect, useState } from "react";
+import { IReUploadProps } from "../Interfaces/ReComponents.interface";
 
-function ReUpload(props: {
-  label: string;
-  name: string;
-  required?: boolean;
-  BtnIcon?: any;
-  BtnTitle: string;
-  fileList: any[];
-  fileListMaxCount: number;
-  onBeforeUpload: Function;
-  onRemove: Function;
-  disable?: boolean;
-  accept?: string;
-  errorMessage: string;
-  multiple?:any
-}) {
+function ReUpload(props: IReUploadProps) {
   const {
     label,
     name,
@@ -30,7 +17,7 @@ function ReUpload(props: {
     disable,
     accept,
     errorMessage,
-    multiple
+    multiple,
   } = props;
   const [rules, setRules] = useState<any[]>([]);
   const [uploading, setUploading] = useState<boolean>(false);
@@ -41,7 +28,6 @@ function ReUpload(props: {
 
   const uploadprops: UploadProps = {
     beforeUpload: async (fileData: any) => {
-      
       setUploading(true);
       await onBeforeUpload(fileData);
       setUploading(false);
@@ -53,7 +39,7 @@ function ReUpload(props: {
     fileList,
     disabled: uploading,
     maxCount: fileListMaxCount,
-    multiple:multiple,
+    multiple: multiple,
     accept: accept,
   };
 

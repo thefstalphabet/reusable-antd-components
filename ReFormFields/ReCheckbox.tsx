@@ -1,5 +1,5 @@
 import { Checkbox, Form } from "antd";
-import { ICheckbox } from "./Interface";
+import { ICheckbox } from "../Interfaces/ReComponents.interface";
 
 function ReCheckBox(props: ICheckbox) {
   const { label, name, disable, handleClick } = props;

@@ -1,27 +1,11 @@
 import { Form, Select } from "antd";
 import React, { useEffect, useState } from "react";
+import {
+  IReSelectProps,
+  ISelectItem,
+} from "../Interfaces/ReComponents.interface";
 
-interface IItems {
-  title: string;
-  value: string | number | boolean;
-}
-
-function ReSelect(props: {
-  allowClear?: boolean;
-  noStyle?: boolean;
-  label: string;
-  name: string;
-  items: IItems[];
-  type?: "multiple" | "tags" | undefined;
-  searchable?: boolean;
-  required?: boolean;
-  disable?: boolean;
-  onChange?: Function;
-  form?: any;
-  placeholder?: string;
-  autoFocus?: boolean;
-  styles?: any;
-}) {
+function ReSelect(props: IReSelectProps) {
   const {
     allowClear,
     noStyle,
@@ -38,7 +22,7 @@ function ReSelect(props: {
     placeholder,
     styles,
   } = props;
-  const [dropDownoptions, setDropDownoptions] = useState<IItems[]>([]);
+  const [dropDownoptions, setDropDownoptions] = useState<ISelectItem[]>([]);
   const [rules, setRules] = useState<any[]>([]);
 
   useEffect(() => {
@@ -57,7 +41,7 @@ function ReSelect(props: {
 
   const handleSearch = (value: string) => {
     if (searchable && value?.length) {
-      let filterOptions: IItems[] = [];
+      let filterOptions: ISelectItem[] = [];
       items?.forEach((data) => {
         if (data.title.toLowerCase().includes(value.toLowerCase())) {
           filterOptions.push(data);

@@ -1,23 +1,9 @@
-import { Button, Form, FormInstance, Space } from "antd";
+import { Button, Form, Space } from "antd";
 import { useState, useEffect } from "react";
+import { IReFormProps } from "./Interfaces/ReComponents.interface";
 
-function ReusableForm(props: {
-  layout?: "horizontal" | "vertical" | "inline";
-  formInstance: FormInstance<any>;
-  resetBtn?: boolean;
-  submitBtn?: boolean;
-  submitBtnText?: string;
-  onSubmit: Function;
-  onChange?: Function;
-  children: any;
-  initialFormValues?: any | {};
-  formStyles?: any;
-  fieldsStyles?: any;
-  className?: string;
-  resetFieldsAfterSubmit?: boolean;
-  disable?: boolean;
-}) {
-  const [submitting, setSubmitting] = useState(false); // form loading while submitting
+function ReusableForm(props: IReFormProps) {
+  const [submitting, setSubmitting] = useState(false);
   const {
     layout,
     resetBtn,
@@ -26,16 +12,14 @@ function ReusableForm(props: {
     onChange,
     children,
     initialFormValues,
-    formStyles,
-    fieldsStyles,
+    formClassName,
+    fieldsClassName,
     formInstance,
-    className,
     submitBtnText,
     resetFieldsAfterSubmit,
     disable,
   } = props;
 
-  // It runs when we submit the form
   const onFinish = async (values: any) => {
     setSubmitting(true);
     await onSubmit(values);
@@ -67,11 +51,10 @@ function ReusableForm(props: {
       layout={layout ? layout : "vertical"}
       onValuesChange={handleFormValuesChange}
       labelCol={{ span: 12 }}
-      style={formStyles}
-      className={className}
+      className={formClassName}
       disabled={disable}
     >
-      <div className="formFields" style={fieldsStyles}>{children}</div>
+      <div className={fieldsClassName}>{children}</div>
       {(submitBtn || resetBtn) && (
         <Form.Item>
           <Space direction="horizontal">

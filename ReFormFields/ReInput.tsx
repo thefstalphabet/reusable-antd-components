@@ -1,6 +1,6 @@
 import { Form, Input, InputNumber } from "antd";
 import { useState, useEffect } from "react";
-import { IInputField } from "./Interface";
+import { IInputField } from "../Interfaces/ReComponents.interface";
 
 function ReInput(props: IInputField) {
   const {

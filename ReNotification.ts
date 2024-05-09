@@ -1,14 +1,7 @@
 import { notification } from "antd";
+import { IReNotificationConfig } from "./Interfaces/ReComponents.interface";
 
-interface IConfig {
-  header?: string
-  description: string,
-  duration?: number,
-  placement?: "topLeft" | "topRight" | "bottomLeft" | "bottomRight",
-  type: "success" | "error" | "info" | "warning",
-}
-
-export const ReNotification = (config: IConfig) => {
+export const ReNotification = (config: IReNotificationConfig) => {
   const { header, description, type, duration, placement } = config
   notification[`${type}`]({
     message: header,

@@ -1,21 +1,7 @@
 import { Tabs } from "antd";
-import { ReactNode } from "react";
+import { IReTabProps, ITabItem } from "./Interfaces/ReComponents.interface";
 
-interface ITabItems {
-  title: string | ReactNode;
-  key: string;
-  children: any;
-  disable?: boolean;
-}
-
-function ReTab(props: {
-  styles?: any;
-  items: ITabItems[];
-  onChange: Function;
-  tabBarExtraContent?: ReactNode | { left?: ReactNode; right?: ReactNode };
-  defaultOpenTab?: string;
-  activeKey: string;
-}) {
+function ReTab(props: IReTabProps) {
   const { styles, items, onChange, tabBarExtraContent, defaultOpenTab, activeKey } = props;
 
   const defaultStyles = {
@@ -33,7 +19,7 @@ function ReTab(props: {
         onChange(activeKey);
       }}
     >
-      {items.map((item: ITabItems) => {
+      {items.map((item: ITabItem) => {
         const { title, key, children, disable } = item;
         return (
           <Tabs.TabPane key={key} tab={title} disabled={disable}>

@@ -2,7 +2,7 @@ import { Button, Form, Space } from "antd";
 import { useState, useEffect } from "react";
 import { IReFormProps } from "./Interfaces/ReComponents.interface";
 
-function ReusableForm(props: IReFormProps) {
+function ReForm(props: IReFormProps) {
   const [submitting, setSubmitting] = useState(false);
   const {
     layout,
@@ -71,4 +71,4 @@ function ReusableForm(props: IReFormProps) {
   );
 }
 
-export default ReusableForm;
+export default ReForm;

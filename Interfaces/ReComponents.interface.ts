@@ -1,4 +1,5 @@
 import { FormInstance } from "antd";
+import { SortOrder } from "antd/es/table/interface";
 import { ReactNode } from "react";
 
 type TextAreaOptionsTypes = {

@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { IHeaderButtons, IReTableProps } from "../Interfaces/ReTable.interface";
 import { Button, Table } from "antd";
 import "./ReTableStyles.css";

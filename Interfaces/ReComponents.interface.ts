@@ -1,4 +1,4 @@
-import { FormInstance } from "antd";
+import { FormInstance, MenuProps } from "antd";
 import { SortOrder } from "antd/es/table/interface";
 import { ReactNode } from "react";
 
@@ -161,4 +161,10 @@ export interface IReUploadProps {
     accept?: string;
     errorMessage: string;
     multiple?: any
+}
+
+export interface IReDropdownProps {
+    className?: string,
+    items: MenuProps['items']
+    child: ReactNode
 }

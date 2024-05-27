@@ -114,7 +114,7 @@ export interface IReTagGroupProps {
 
 export interface IRadioItem {
     title: string;
-    value: string | number;
+    value: string | number | boolean;
     disable?: boolean;
 }
 export interface IReRadioGroupProps {
@@ -123,7 +123,7 @@ export interface IReRadioGroupProps {
     disable?: boolean;
     items: IRadioItem[];
     noStyle?: boolean;
-    defaultValue?: string | number
+    defaultValue?: string | number | boolean
 }
 
 export interface ISelectItem {
@@ -167,4 +167,16 @@ export interface IReDropdownProps {
     className?: string,
     items: MenuProps['items']
     child: ReactNode
+}
+
+export interface IReTimepickerProps {
+    label: string;
+    name: string;
+    required?: boolean;
+    disable?: boolean;
+    noStyle?: boolean
+    placeholder: [string, string]
+    allowClear?: boolean,
+    className?: string
+    format?: string
 }

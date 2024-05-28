@@ -1,5 +1,4 @@
 import { FormInstance, MenuProps } from "antd";
-import { SortOrder } from "antd/es/table/interface";
 import { ReactNode } from "react";
 
 type TextAreaOptionsTypes = {
@@ -179,4 +178,19 @@ export interface IReTimepickerProps {
     allowClear?: boolean,
     className?: string
     format?: string
+}
+
+export interface IReMenuItems {
+    key: string;
+    label: string;
+    icon: JSX.Element;
+    path: string;
+    children?: IReMenuItems[];
+}
+export interface IReMenuProps {
+    mode: "vertical" | "horizontal" | "inline";
+    className: string;
+    items: IReMenuItems[];
+    onClick: ({ item }: any) => void;
+    theme?: "dark" | "light"
 }

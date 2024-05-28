@@ -192,5 +192,7 @@ export interface IReMenuProps {
     className: string;
     items: IReMenuItems[];
     onClick: ({ item }: any) => void;
-    theme?: "dark" | "light"
+    theme?: "dark" | "light",
+    selectedKeys: string[]
+    onSelect?: ({ item, key, keyPath, selectedKeys, domEvent }: any) => void
 }

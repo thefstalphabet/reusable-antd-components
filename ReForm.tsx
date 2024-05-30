@@ -11,7 +11,6 @@ function ReForm(props: IReFormProps) {
     onSubmit,
     onChange,
     children,
-    initialFormValues,
     formClassName,
     fieldsClassName,
     formInstance,
@@ -34,14 +33,6 @@ function ReForm(props: IReFormProps) {
   const handleFormValuesChange = (changedValues: any, allValues: any) => {
     onChange && onChange(changedValues, allValues);
   };
-
-  const setInitialValuesOfForm = () => {
-    formInstance.setFieldsValue(initialFormValues);
-  };
-
-  useEffect(() => {
-    setInitialValuesOfForm();
-  }, [initialFormValues]);
 
   return (
     <Form

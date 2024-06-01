@@ -186,6 +186,7 @@ export interface IReMenuItems {
     icon: JSX.Element;
     path: string;
     children?: IReMenuItems[];
+    protected?: boolean;
 }
 export interface IReMenuProps {
     mode: "vertical" | "horizontal" | "inline";

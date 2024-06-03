@@ -197,3 +197,17 @@ export interface IReMenuProps {
     selectedKeys: string[]
     onSelect?: ({ item, key, keyPath, selectedKeys, domEvent }: any) => void
 }
+
+export interface IReDatePicker {
+    allowClear?: boolean;
+    noStyle?: boolean;
+    label: string;
+    name: string;
+    required?: boolean;
+    form?:any,
+    disableUpcomingDates?: boolean;
+    dateFormat?: string;
+    disable?: boolean;
+    lastDate?: Date;
+    onChange?: Function;
+  }

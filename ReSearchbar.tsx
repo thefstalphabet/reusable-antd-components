@@ -8,10 +8,12 @@ export default function ReSearchbar(props: {
   placeholder?: string;
   size: "small" | "large";
   onSubmit: (searchTerm: string) => void;
+  onChange?: (searchTerm: string) => void;
 }) {
-  const { className, placeholder, size, onSubmit } = props;
+  const { className, placeholder, size, onSubmit, onChange } = props;
 
   const [searchTerm, setSearchTerm] = useState<string>("");
+  
   const handleEnterHits = (e: any) => {
     if (e?.key === "Enter") {
       onSubmit(searchTerm);
@@ -24,6 +26,7 @@ export default function ReSearchbar(props: {
       className={className}
       onChange={(e) => {
         setSearchTerm(e?.target?.value);
+        onChange && onChange(e?.target?.value);
       }}
       onPressEnter={handleEnterHits}
       prefix={

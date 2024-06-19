@@ -204,10 +204,26 @@ export interface IReDatePicker {
     label: string;
     name: string;
     required?: boolean;
-    form?:any,
+    form?: any,
     disableUpcomingDates?: boolean;
     dateFormat?: string;
     disable?: boolean;
     lastDate?: Date;
     onChange?: Function;
-  }
+}
+
+export interface IReListItems {
+    href?: string,
+    title: string,
+    avatar?: string,
+    description: string,
+    extra?: any
+    className?: string,
+    actions?: Array<ReactNode>
+}
+export interface IReListProps {
+    itemLayout: "horizontal" | "vertical"
+    data: IReListItems[]
+    loading?: boolean,
+    className?: string
+}

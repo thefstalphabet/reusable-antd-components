@@ -62,18 +62,17 @@ export interface IReDrawerProps {
     extraContent?: React.ReactNode
 }
 
-export interface IReMOdalProps {
+export interface IReModalProps {
     children: any;
     title?: string | React.ReactNode;
     visibility?: boolean;
     footer?: boolean | React.ReactNode;
     onOkay?: Function;
     onCancel: Function;
-    width?: number;
-    height?: number;
     closable?: boolean;
     onOkayBtnTitle?: string;
     centered?: boolean;
+    width?: string
 }
 
 export interface IReNotificationConfig {

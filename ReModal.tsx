@@ -1,7 +1,7 @@
 import { Modal } from "antd";
-import { IReMOdalProps } from "./Interfaces/ReComponents.interface";
+import { IReModalProps } from "./Interfaces/ReComponents.interface";
 
-function ReModal(props: IReMOdalProps) {
+function ReModal(props: IReModalProps) {
   const {
     children,
     onOkay,
@@ -9,16 +9,15 @@ function ReModal(props: IReMOdalProps) {
     visibility,
     footer,
     onCancel,
-    width,
-    height,
     closable,
     onOkayBtnTitle,
     centered,
+    width,
   } = props;
 
   return (
     <Modal
-      width={width ? width : 800}
+      width={width}
       closable={closable}
       title={title}
       centered={centered}
@@ -31,7 +30,6 @@ function ReModal(props: IReMOdalProps) {
         onCancel();
       }}
       footer={footer}
-      bodyStyle={{ maxHeight: `${height || 500}px`, overflow: "scroll" }}
     >
       {children}
     </Modal>

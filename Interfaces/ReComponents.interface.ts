@@ -226,3 +226,15 @@ export interface IReListProps {
     loading?: boolean,
     className?: string
 }
+
+export interface IReCardProps {
+    className?: string;
+    children: ReactNode;
+    loading?: boolean;
+    extra?: ReactNode;
+    hoverable?: boolean;
+    size?: "default" | "small";
+    bordered?: boolean;
+    actions?: Array<ReactNode>;
+    onClick?: () => void
+  }

@@ -238,3 +238,10 @@ export interface IReCardProps {
     actions?: Array<ReactNode>;
     onClick?: () => void
   }
+
+  export interface IReEmptyProps {
+    title?: string;
+    description?: string;
+    onClick?: () => void;
+    actionButtonText?: string
+  }

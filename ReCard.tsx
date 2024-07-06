@@ -12,6 +12,7 @@ function ReCard(IReCardProps: IReCardProps) {
     size,
     bordered,
     actions,
+    cover,
   } = IReCardProps;
   return (
     <Card
@@ -23,6 +24,7 @@ function ReCard(IReCardProps: IReCardProps) {
       bordered={bordered}
       className={className}
       actions={actions}
+      cover={cover}
     >
       {children}
     </Card>

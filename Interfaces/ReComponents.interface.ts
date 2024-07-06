@@ -236,7 +236,8 @@ export interface IReCardProps {
     size?: "default" | "small";
     bordered?: boolean;
     actions?: Array<ReactNode>;
-    onClick?: () => void
+    onClick?: () => void,
+    cover?: any
   }
 
   export interface IReEmptyProps {

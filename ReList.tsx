@@ -3,11 +3,12 @@ import { IReListProps } from "./Interfaces/ReComponents.interface";
 import { Link } from "react-router-dom";
 
 export default function ReList(props: IReListProps) {
-  const { data, itemLayout, loading, className } = props;
+  const { data, itemLayout, loading, className, bordered } = props;
 
   return (
     <List
       className={className}
+      bordered={bordered}
       style={{
         padding: "1rem",
         boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",

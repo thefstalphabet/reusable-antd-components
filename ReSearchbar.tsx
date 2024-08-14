@@ -32,7 +32,7 @@ export default function ReSearchbar(props: {
       prefix={
         <FontAwesomeIcon
           icon={faMagnifyingGlass}
-          style={{ marginRight: "5px" }}
+          style={{ marginRight: "5px", color: "#bfbfbf" }}
         />
       }
     />

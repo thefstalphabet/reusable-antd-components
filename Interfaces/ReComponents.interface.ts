@@ -213,18 +213,19 @@ export interface IReDatePicker {
 
 export interface IReListItems {
     href?: string,
-    title: string,
-    avatar?: string,
-    description: string,
+    title: ReactNode,
+    avatar?: ReactNode,
+    description: ReactNode,
     extra?: any
     className?: string,
-    actions?: Array<ReactNode>
+    actions?: Array<ReactNode>,
 }
 export interface IReListProps {
     itemLayout: "horizontal" | "vertical"
     data: IReListItems[]
     loading?: boolean,
     className?: string
+    bordered?: boolean
 }
 
 export interface IReCardProps {

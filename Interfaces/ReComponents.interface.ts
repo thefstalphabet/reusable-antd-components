@@ -191,7 +191,7 @@ export interface IReMenuProps {
     mode: "vertical" | "horizontal" | "inline";
     className: string;
     items: IReMenuItems[];
-    onClick: ({ item }: any) => void;
+    onClick: ({ key }: any) => void;
     theme?: "dark" | "light",
     selectedKeys: string[]
     onSelect?: ({ item, key, keyPath, selectedKeys, domEvent }: any) => void

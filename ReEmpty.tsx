@@ -2,7 +2,8 @@ import { Button, Empty } from "antd";
 import { IReEmptyProps } from "./Interfaces/ReComponents.interface";
 
 function ReEmpty(IReEmptyProps: IReEmptyProps) {
-  const { title, description, onClick, actionButtonText } = IReEmptyProps;
+  const { title, description, onClick, actionButtonText, actionButton } =
+    IReEmptyProps;
   return (
     <Empty
       image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
@@ -14,9 +15,11 @@ function ReEmpty(IReEmptyProps: IReEmptyProps) {
         </>
       }
     >
-      <Button size="small" onClick={onClick} type="primary">
-        {actionButtonText ? actionButtonText : "Create New"}
-      </Button>
+      {actionButton && (
+        <Button size="small" onClick={onClick} type="primary">
+          {actionButtonText ? actionButtonText : "Create New"}
+        </Button>
+      )}
     </Empty>
   );
 }

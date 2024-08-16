@@ -9,11 +9,13 @@ export default function ReSearchbar(props: {
   size: "small" | "large";
   onSubmit: (searchTerm: string) => void;
   onChange?: (searchTerm: string) => void;
+  allowClear?: boolean;
 }) {
-  const { className, placeholder, size, onSubmit, onChange } = props;
+  const { className, placeholder, size, onSubmit, onChange, allowClear } =
+    props;
 
   const [searchTerm, setSearchTerm] = useState<string>("");
-  
+
   const handleEnterHits = (e: any) => {
     if (e?.key === "Enter") {
       onSubmit(searchTerm);
@@ -21,6 +23,7 @@ export default function ReSearchbar(props: {
   };
   return (
     <Input
+      allowClear={allowClear}
       size={size}
       placeholder={placeholder}
       className={className}

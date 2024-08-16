@@ -246,4 +246,5 @@ export interface IReCardProps {
     description?: string;
     onClick?: () => void;
     actionButtonText?: string
+    actionButton?: boolean
   }

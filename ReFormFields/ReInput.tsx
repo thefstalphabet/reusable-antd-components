@@ -20,14 +20,15 @@ function ReInput(props: IInputField) {
     width,
     form,
     onChange,
-    styles,
+    className,
+    borderLess,
   } = props;
   const [rules, setRules] = useState<any[]>([]);
   const [element, setElement] = useState<any>();
 
   useEffect(() => {
     setRules(
-      required ? [{ required: true, message: `Please enter the ${label}` }] : []
+      required ? [{ required: true, message: `Please enter the ${label}`, placeholder: placeholder }] : []
     );
 
     switch (type) {
@@ -36,7 +37,9 @@ function ReInput(props: IInputField) {
       case "url":
         setElement(
           <Input
-            style={{ width: width ? width : "100%", ...styles }}
+            bordered={borderLess}
+            style={{ width: width ? width : "100%" }}
+            className={className}
             disabled={disable}
             placeholder={placeholder || ""}
             prefix={prefix}
@@ -48,7 +51,7 @@ function ReInput(props: IInputField) {
       case "password":
         setElement(
           <Input.Password
-            style={styles}
+            className={className}
             disabled={disable}
             placeholder={placeholder || ""}
             prefix={prefix}
@@ -60,7 +63,8 @@ function ReInput(props: IInputField) {
         setElement(
           <InputNumber
             disabled={disable}
-            style={{ width: width ? width : "100%", ...styles }}
+            style={{ width: width ? width : "100%" }}
+            className={className}
             placeholder={placeholder || ""}
             prefix={prefix}
             min={min}
@@ -72,7 +76,7 @@ function ReInput(props: IInputField) {
       case "textArea":
         setElement(
           <Input.TextArea
-            style={styles}
+            className={className}
             showCount
             maxLength={textAreaWordLimit}
             rows={textAreaOptions?.rowSize || 4}

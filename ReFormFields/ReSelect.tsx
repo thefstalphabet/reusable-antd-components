@@ -20,7 +20,9 @@ function ReSelect(props: IReSelectProps) {
     form,
     onChange,
     placeholder,
-    styles,
+    className,
+    borderLess,
+    dropdownStyle,
   } = props;
   const [dropDownoptions, setDropDownoptions] = useState<ISelectItem[]>([]);
   const [rules, setRules] = useState<any[]>([]);
@@ -57,7 +59,9 @@ function ReSelect(props: IReSelectProps) {
   return (
     <Form.Item label={label} name={name} rules={rules} noStyle={noStyle}>
       <Select
-        style={styles}
+        dropdownStyle={dropdownStyle}
+        bordered={borderLess}
+        className={className}
         disabled={disable}
         allowClear={allowClear === undefined ? true : allowClear}
         mode={type}

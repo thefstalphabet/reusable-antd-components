@@ -24,7 +24,8 @@ export interface IInputField {
     width?: string;
     size?: "large" | "middle" | "small";
     onChange?: () => void;
-    styles?: any
+    className?: string
+    borderLess?: boolean
 };
 
 export interface ICheckbox {
@@ -142,7 +143,9 @@ export interface IReSelectProps {
     form?: any;
     placeholder?: string;
     autoFocus?: boolean;
-    styles?: any;
+    className?: any;
+    borderLess?: boolean,
+    dropdownStyle?: any
 }
 
 export interface IReUploadProps {

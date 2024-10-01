@@ -105,8 +105,6 @@ function ReInput(props: IInputField) {
     }
   }, [disable, required, form]);
 
-  console.log(rules);
-
   return (
     <Form.Item label={label} name={name} rules={rules} noStyle={noStyle}>
       {element}

@@ -6,7 +6,7 @@ interface Iprops {
   required?: boolean;
   fileList: UploadFile<File>[];
   fileListMaxCount: number;
-  beforeUpload: (file: File, fileList?: File[]) => void;
+  beforeUpload: (file: UploadFile<File>, fileList?: File[]) => void;
   onRemove: (
     file: UploadFile<File>
   ) => boolean | void | Promise<boolean | void>;
@@ -34,7 +34,7 @@ function ReUpload(props: Iprops) {
   const [uploading, setUploading] = useState<boolean>(false);
 
   const uploadprops: UploadProps = {
-    beforeUpload: async (fileData: File) => {
+    beforeUpload: async (fileData: UploadFile<File>) => {
       setUploading(true);
       await beforeUpload(fileData);
       setUploading(false);

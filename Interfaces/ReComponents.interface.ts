@@ -1,33 +1,6 @@
 import { FormInstance, MenuProps } from "antd";
 import { ReactNode } from "react";
 
-type TextAreaOptionsTypes = {
-    rowSize?: number;
-    textAreaResize?: boolean;
-};
-
-export interface IInputField {
-    label: string;
-    name: string;
-    type: "simple" | "email" | "password" | "textArea" | "number" | "url";
-    required?: boolean;
-    form?: any,
-    min?: number;
-    max?: number;
-    maxLength?: number;
-    textAreaWordLimit?: number;
-    disable?: boolean;
-    noStyle?: boolean;
-    placeholder?: string;
-    prefix?: React.ReactNode;
-    textAreaOptions?: TextAreaOptionsTypes;
-    width?: string;
-    size?: "large" | "middle" | "small";
-    onChange?: () => void;
-    className?: string
-    borderLess?: boolean
-};
-
 export interface ICheckbox {
     label: string;
     name: string;

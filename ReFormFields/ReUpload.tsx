@@ -1,58 +1,67 @@
-import { UploadOutlined } from "@ant-design/icons";
-import { Upload, Button, UploadProps, Form } from "antd";
-import React, { useEffect, useState } from "react";
-import { IReUploadProps } from "../Interfaces/ReComponents.interface";
-
-function ReUpload(props: IReUploadProps) {
+import { Upload, UploadProps, Form, UploadFile } from "antd";
+import { ReactNode, useState } from "react";
+interface Iprops {
+  label: string;
+  name: string;
+  required?: boolean;
+  fileList: UploadFile<File>[];
+  fileListMaxCount: number;
+  beforeUpload: (file: File, fileList?: File[]) => void;
+  onRemove: (
+    file: UploadFile<File>
+  ) => boolean | void | Promise<boolean | void>;
+  disable?: boolean;
+  accept?: string;
+  errorMessage?: string;
+  multiple?: boolean;
+  uploadIcon?: ReactNode;
+  listType?: "picture-card" | "picture-circle" | "text";
+}
+function ReUpload(props: Iprops) {
   const {
     label,
     name,
     required,
-    BtnIcon,
     fileList,
     fileListMaxCount,
-    onBeforeUpload,
+    beforeUpload,
     onRemove,
-    BtnTitle,
-    disable,
     accept,
-    errorMessage,
+    uploadIcon,
     multiple,
+    listType,
   } = props;
-  const [rules, setRules] = useState<any[]>([]);
   const [uploading, setUploading] = useState<boolean>(false);
 
-  useEffect(() => {
-    setRules(required ? [{ required: true, message: errorMessage }] : []);
-  }, []);
-
   const uploadprops: UploadProps = {
-    beforeUpload: async (fileData: any) => {
+    beforeUpload: async (fileData: File) => {
       setUploading(true);
-      await onBeforeUpload(fileData);
+      await beforeUpload(fileData);
       setUploading(false);
       return true;
     },
-    onRemove: (fileData: any) => {
-      onRemove(fileData);
-    },
+    onRemove,
     fileList,
     disabled: uploading,
     maxCount: fileListMaxCount,
     multiple: multiple,
     accept: accept,
+    listType: listType,
   };
 
   return (
-    <Form.Item label={label} name={name} rules={rules}>
-      <Upload {...uploadprops}>
-        <Button
-          disabled={disable}
-          icon={BtnIcon ? BtnIcon : <UploadOutlined />}
-        >
-          {BtnTitle}
-        </Button>
-      </Upload>
+    <Form.Item
+      label={label}
+      name={name}
+      rules={[
+        {
+          required: required,
+          message: `Pleasse enter ${label}`,
+          type: "object",
+        },
+      ]}
+    >
+      <Upload {...uploadprops}>{uploadIcon}</Upload>
     </Form.Item>
   );
 }

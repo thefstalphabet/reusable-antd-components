@@ -1,7 +1,22 @@
-import { Form, Input, InputNumber } from "antd";
-import { useState, useEffect } from "react";
-import { IInputField } from "../Interfaces/ReComponents.interface";
-
+import { Form, FormInstance, Input, InputNumber } from "antd";
+import { useState, useEffect, ReactNode } from "react";
+import { Rule } from "antd/es/form";
+interface IInputField {
+  label: string;
+  name: string;
+  type: "string" | "email" | "password" | "textArea" | "number" | "url";
+  required?: boolean;
+  form?: FormInstance;
+  min?: number;
+  max?: number;
+  disable?: boolean;
+  noStyle?: boolean;
+  placeholder?: string;
+  prefix?: React.ReactNode;
+  size?: "large" | "middle" | "small";
+  className?: string;
+  borderLess?: boolean;
+}
 function ReInput(props: IInputField) {
   const {
     label,
@@ -10,88 +25,34 @@ function ReInput(props: IInputField) {
     required,
     min,
     max,
-    textAreaWordLimit,
     disable,
     noStyle,
     placeholder,
     prefix,
-    textAreaOptions,
-    maxLength,
-    width,
     form,
-    onChange,
     className,
     borderLess,
   } = props;
-  const [rules, setRules] = useState<any[]>([]);
-  const [element, setElement] = useState<any>();
+  const defaultProps = {
+    bordered: borderLess,
+    style: { width: "100%" },
+    className: className,
+    disabled: disable,
+    placeholder: placeholder,
+    prefix: prefix,
+  };
+  const [rules, setRules] = useState<Rule[]>([]);
+  const [element, setElement] = useState<ReactNode>(
+    <Input type={type} {...defaultProps} />
+  );
 
   useEffect(() => {
-    setRules(
-      required ? [{ required: true, message: `Please enter the ${label}`, placeholder: placeholder }] : []
-    );
-
     switch (type) {
-      case "email":
-      case "simple":
-      case "url":
-        setElement(
-          <Input
-            bordered={borderLess}
-            style={{ width: width ? width : "100%" }}
-            className={className}
-            disabled={disable}
-            placeholder={placeholder || ""}
-            prefix={prefix}
-            maxLength={maxLength}
-            onChange={onChange}
-          />
-        );
-        break;
-      case "password":
-        setElement(
-          <Input.Password
-            className={className}
-            disabled={disable}
-            placeholder={placeholder || ""}
-            prefix={prefix}
-            onChange={onChange}
-          />
-        );
-        break;
       case "number":
-        setElement(
-          <InputNumber
-            disabled={disable}
-            style={{ width: width ? width : "100%" }}
-            className={className}
-            placeholder={placeholder || ""}
-            prefix={prefix}
-            min={min}
-            max={max}
-            onChange={onChange}
-          />
-        );
+        setElement(<InputNumber {...defaultProps} />);
         break;
       case "textArea":
-        setElement(
-          <Input.TextArea
-            className={className}
-            showCount
-            maxLength={textAreaWordLimit}
-            rows={textAreaOptions?.rowSize || 4}
-            autoSize={
-              !textAreaOptions?.textAreaResize && {
-                minRows: textAreaOptions?.rowSize || 4,
-                maxRows: textAreaOptions?.rowSize || 4,
-              }
-            }
-            allowClear
-            disabled={disable}
-            placeholder={placeholder || ""}
-            onChange={onChange}
-          />
-        );
+        setElement(<Input.TextArea showCount maxLength={max} allowClear />);
         break;
       default:
         break;
@@ -99,20 +60,29 @@ function ReInput(props: IInputField) {
 
     switch (type) {
       case "email":
-        setRules((pre: any) => [
-          ...pre,
-          { type: type, message: "Please enter a valid E-mail ID" },
+        setRules([
+          { type: type, message: "Please enter a valid Email", required },
+        ]);
+        break;
+      case "textArea":
+        setRules([
+          { type: "string", message: `Please enter ${label}`, required },
         ]);
         break;
       case "url":
-        setRules((pre: any) => [
-          ...pre,
-          { type: type, message: "Please enter a valid url" },
+        setRules([
+          { type: type, message: "Please enter a valid url", required },
         ]);
         break;
-      case "simple":
+      case "number":
+        setRules([{ type: type, message: `Please enter ${label}`, required }]);
+        break;
+      case "string":
+        setRules([
+          { type: type, message: `Please enter a ${label}`, required },
+        ]);
         if (min) {
-          setRules((pre: any) => [
+          setRules((pre: Rule[]) => [
             ...pre,
             {
               min: min,
@@ -121,7 +91,7 @@ function ReInput(props: IInputField) {
           ]);
         }
         if (max) {
-          setRules((pre: any) => [
+          setRules((pre: Rule[]) => [
             ...pre,
             {
               max: max,
@@ -134,6 +104,8 @@ function ReInput(props: IInputField) {
         break;
     }
   }, [disable, required, form]);
+
+  console.log(rules);
 
   return (
     <Form.Item label={label} name={name} rules={rules} noStyle={noStyle}>

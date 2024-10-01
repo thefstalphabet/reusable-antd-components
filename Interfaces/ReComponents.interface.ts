@@ -98,29 +98,6 @@ export interface IReRadioGroupProps {
     defaultValue?: string | number | boolean
 }
 
-export interface ISelectItem {
-    title: string;
-    value: string | number | boolean;
-}
-export interface IReSelectProps {
-    allowClear?: boolean;
-    noStyle?: boolean;
-    label: string;
-    name: string;
-    items: ISelectItem[];
-    type?: "multiple" | "tags" | undefined;
-    searchable?: boolean;
-    required?: boolean;
-    disable?: boolean;
-    onChange?: Function;
-    form?: any;
-    placeholder?: string;
-    autoFocus?: boolean;
-    className?: any;
-    borderLess?: boolean,
-    dropdownStyle?: any
-}
-
 export interface IReUploadProps {
     label: string;
     name: string;

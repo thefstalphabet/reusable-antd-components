@@ -1,11 +1,30 @@
-import { Form, Select } from "antd";
-import React, { useEffect, useState } from "react";
-import {
-  IReSelectProps,
-  ISelectItem,
-} from "../Interfaces/ReComponents.interface";
+import { Form, FormInstance, Select } from "antd";
+import { OptionProps } from "antd/es/select";
+import { CSSProperties, useEffect, useState } from "react";
 
-function ReSelect(props: IReSelectProps) {
+export interface ISelectOptions {
+  label: string;
+  value: string;
+}
+export interface IProps {
+  allowClear?: boolean;
+  noStyle?: boolean;
+  label: string;
+  name: string;
+  items: ISelectOptions[];
+  type?: "multiple" | "tags" | undefined;
+  searchable?: boolean;
+  required?: boolean;
+  disable?: boolean;
+  onChange?: (value: string, option: OptionProps | Array<OptionProps>) => void;
+  form?: FormInstance;
+  placeholder?: string;
+  autoFocus?: boolean;
+  className?: string;
+  variant?: "outlined" | "borderless" | "filled";
+  dropdownStyle?: CSSProperties;
+}
+function ReSelect(props: IProps) {
   const {
     allowClear,
     noStyle,
@@ -17,72 +36,49 @@ function ReSelect(props: IReSelectProps) {
     searchable,
     autoFocus,
     disable,
-    form,
     onChange,
     placeholder,
     className,
-    borderLess,
+    variant,
     dropdownStyle,
   } = props;
-  const [dropDownoptions, setDropDownoptions] = useState<ISelectItem[]>([]);
-  const [rules, setRules] = useState<any[]>([]);
+  const [dropDownoptions, setDropDownoptions] = useState<ISelectOptions[]>([]);
 
   useEffect(() => {
     setDropDownoptions(items);
   }, [items]);
 
-  useEffect(() => {
-    setRules(
-      required ? [{ required: true, message: `Please enter the ${label}` }] : []
-    );
-  }, [required, disable, form]);
-
-  const handleOnChange = (changedValues: any, allValues: any) => {
-    onChange && onChange(changedValues, allValues);
-  };
-
-  const handleSearch = (value: string) => {
-    if (searchable && value?.length) {
-      let filterOptions: ISelectItem[] = [];
-      items?.forEach((data) => {
-        if (data.title.toLowerCase().includes(value.toLowerCase())) {
-          filterOptions.push(data);
-        }
-      });
-      setDropDownoptions(filterOptions);
-    }
-    if (value?.length === 0) {
-      setDropDownoptions(items);
+  const handleOnChange = (
+    value: string,
+    option: OptionProps | Array<OptionProps>
+  ) => {
+    if (onChange) {
+      onChange(value, option);
     }
   };
 
   return (
-    <Form.Item label={label} name={name} rules={rules} noStyle={noStyle}>
+    <Form.Item
+      label={label}
+      name={name}
+      rules={[{ required, message: `Please enter the ${label}` }]}
+      noStyle={noStyle}
+    >
       <Select
         dropdownStyle={dropdownStyle}
-        bordered={borderLess}
+        variant={variant || "outlined"}
         className={className}
         disabled={disable}
-        allowClear={allowClear === undefined ? true : allowClear}
+        allowClear={allowClear}
         mode={type}
         autoFocus={autoFocus}
         showSearch={searchable}
         onChange={handleOnChange}
         placeholder={placeholder || ""}
-        onSearch={(e) => {
-          handleSearch(e);
-        }}
-        filterOption={(input, option) =>
-          option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-        }
       >
-        {dropDownoptions.map((item: any) => {
-          const { value, title } = item;
-          return (
-            <Select.Option value={value} disabled={item?.disable || false}>
-              {title}
-            </Select.Option>
-          );
+        {dropDownoptions.map((item: ISelectOptions) => {
+          const { value, label } = item;
+          return <Select.Option value={value}>{label}</Select.Option>;
         })}
       </Select>
     </Form.Item>

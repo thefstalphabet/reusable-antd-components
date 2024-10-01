@@ -15,7 +15,7 @@ interface IInputField {
   prefix?: React.ReactNode;
   size?: "large" | "middle" | "small";
   className?: string;
-  borderLess?: boolean;
+  variant?: "outlined" | "borderless" | "filled";
 }
 function ReInput(props: IInputField) {
   const {
@@ -31,10 +31,10 @@ function ReInput(props: IInputField) {
     prefix,
     form,
     className,
-    borderLess,
+    variant,
   } = props;
   const defaultProps = {
-    bordered: borderLess,
+    variant: variant || "outlined",
     style: { width: "100%" },
     className: className,
     disabled: disable,

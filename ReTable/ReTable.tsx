@@ -1,9 +1,57 @@
-import { useEffect, useLayoutEffect, useState } from "react";
-import { IHeaderButtons, IReTableProps } from "../Interfaces/ReTable.interface";
-import { Button, Table } from "antd";
+import { ReactNode, useEffect, useLayoutEffect, useState } from "react";
+import { Button, ButtonProps, Table } from "antd";
 import "./ReTableStyles.css";
+import { SortOrder } from "antd/es/table/interface";
+interface IHeader {
+  headerButtons?: ButtonProps[];
+  title?: string | ReactNode;
+}
+interface IPagination {
+  disabled?: boolean;
+  pageSizeOptions?: string[] | number[];
+  total?: number;
+  current?: number;
+}
+interface IProps {
+  className?: string;
+  columns: any;
+  data?: unknown[];
+  loading?: boolean;
+  name?: string;
+  header?: IHeader;
+  pagination?: IPagination;
+  scroll?: IScroll;
+  columnOptions?: IColumnOptions;
+  refreshTable?: boolean;
+}
+interface IScroll {
+  x?: number | true;
+  y?: number | "max-content";
+}
 
-export default function ReTable(props: IReTableProps) {
+interface IFilterItem {
+  text: string;
+  value: number | string | boolean;
+}
+interface IKeysWFilterItems {
+  key: string;
+  items: IFilterItem[];
+}
+interface IKeysWAction {
+  key: string;
+  action?: (value: number | string) => number | string;
+}
+interface IColumnOptions {
+  sorting?: {
+    columnsKeys: string[];
+    sortingDirections?: SortOrder[];
+  };
+  filter?: {
+    columnsKeys: Array<string | IKeysWFilterItems | IKeysWAction>;
+    filterSearch?: boolean;
+  };
+}
+export default function ReTable(props: IProps) {
   const {
     columns,
     data,
@@ -13,13 +61,11 @@ export default function ReTable(props: IReTableProps) {
     scroll,
     className,
     columnOptions,
-    exportOption,
     header,
-    refreshTable,
   } = props;
 
-  const [newColumns, setNewColumns] = useState<any>([]);
-  const [newData, setNewData] = useState<any>([]);
+  const [newColumns, setNewColumns] = useState<un>([]);
+  const [newData, setNewData] = useState<unknown>([]);
   const [tableLoading, setTableLoading] = useState<boolean>(false);
   const [tableHeight, setTableHeight] = useState<number>(400);
 

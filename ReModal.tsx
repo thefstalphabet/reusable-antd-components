@@ -1,7 +1,18 @@
 import { Modal } from "antd";
-import { IReModalProps } from "./Interfaces/ReComponents.interface";
-
-function ReModal(props: IReModalProps) {
+import { ReactNode } from "react";
+export interface IProps {
+  children: ReactNode;
+  title?: string | React.ReactNode;
+  visibility?: boolean;
+  footer?: boolean | React.ReactNode;
+  onOkay?: (close: unknown) => void;
+  onCancel: (close: unknown) => void;
+  closable?: boolean;
+  onOkayBtnTitle?: string;
+  centered?: boolean;
+  width?: string;
+}
+function ReModal(props: IProps) {
   const {
     children,
     onOkay,
@@ -23,12 +34,8 @@ function ReModal(props: IReModalProps) {
       centered={centered}
       open={visibility}
       okText={onOkayBtnTitle}
-      onOk={() => {
-        onOkay && onOkay();
-      }}
-      onCancel={() => {
-        onCancel();
-      }}
+      onOk={onOkay}
+      onCancel={onCancel}
       footer={footer}
     >
       {children}

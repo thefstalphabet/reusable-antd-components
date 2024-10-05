@@ -1,8 +1,21 @@
-import { Button, Form, Space } from "antd";
-import { useState, useEffect } from "react";
-import { IReFormProps } from "./Interfaces/ReComponents.interface";
-
-function ReForm(props: IReFormProps) {
+import { Button, Form, FormInstance, Space } from "antd";
+import { ReactNode, useState } from "react";
+interface IProps {
+  layout?: "horizontal" | "vertical" | "inline";
+  formInstance: FormInstance;
+  resetBtn?: boolean;
+  submitBtn?: boolean;
+  submitBtnText?: string;
+  onSubmit: (values: unknown) => void;
+  onChange?: (changedValues: unknown, allValues: unknown) => void;
+  children: ReactNode;
+  initialFormValues?: unknown;
+  formClassName?: string;
+  fieldsClassName?: string;
+  resetFieldsAfterSubmit?: boolean;
+  disable?: boolean;
+}
+function ReForm(props: IProps) {
   const [submitting, setSubmitting] = useState(false);
   const {
     layout,
@@ -19,28 +32,30 @@ function ReForm(props: IReFormProps) {
     disable,
   } = props;
 
-  const onFinish = async (values: any) => {
+  const onFinish = async (values: unknown) => {
     setSubmitting(true);
     await onSubmit(values);
     setSubmitting(false);
-    resetFieldsAfterSubmit && formInstance.resetFields();
+    if (resetFieldsAfterSubmit) {
+      formInstance.resetFields();
+    }
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Form validation failed:", errorInfo);
-  };
-
-  const handleFormValuesChange = (changedValues: any, allValues: any) => {
-    onChange && onChange(changedValues, allValues);
+  const handleFormValuesChange = (
+    changedValues: unknown,
+    allValues: unknown
+  ) => {
+    if (onChange) {
+      onChange(changedValues, allValues);
+    }
   };
 
   return (
     <Form
       form={formInstance}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      layout={layout ? layout : "vertical"}
-      onValuesChange={handleFormValuesChange}
+      layout={layout || "vertical"}
+      onValuesChange={handleFormValuesChange || {}}
       labelCol={{ span: 12 }}
       className={formClassName}
       disabled={disable}

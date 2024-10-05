@@ -1,4 +1,4 @@
-import { FormInstance, MenuProps } from "antd";
+import { MenuProps } from "antd";
 import { ReactNode } from "react";
 
 export interface ICheckbox {
@@ -8,24 +8,8 @@ export interface ICheckbox {
     handleClick?: () => void;
 };
 
-export interface IReFormProps {
-    layout?: "horizontal" | "vertical" | "inline";
-    formInstance: FormInstance<any>;
-    resetBtn?: boolean;
-    submitBtn?: boolean;
-    submitBtnText?: string;
-    onSubmit: Function;
-    onChange?: Function;
-    children: any;
-    initialFormValues?: any | {};
-    formClassName?: any;
-    fieldsClassName?: any;
-    resetFieldsAfterSubmit?: boolean;
-    disable?: boolean;
-}
-
 export interface IReDrawerProps {
-    children: any;
+    children: ReactNode;
     visibility: boolean;
     title?: string | React.ReactNode;
     footer?: boolean | React.ReactNode;
@@ -34,19 +18,6 @@ export interface IReDrawerProps {
     placement?: "top" | "right" | "bottom" | "left";
     closable?: boolean;
     extraContent?: React.ReactNode
-}
-
-export interface IReModalProps {
-    children: any;
-    title?: string | React.ReactNode;
-    visibility?: boolean;
-    footer?: boolean | React.ReactNode;
-    onOkay?: Function;
-    onCancel: Function;
-    closable?: boolean;
-    onOkayBtnTitle?: string;
-    centered?: boolean;
-    width?: string
 }
 
 export interface IReNotificationConfig {
@@ -60,7 +31,7 @@ export interface IReNotificationConfig {
 export interface ITabItem {
     title: string | ReactNode;
     key: string;
-    children: any;
+    children: ReactNode;
     disable?: boolean;
 }
 export interface IReTabProps {

@@ -20,13 +20,7 @@ export interface IReDrawerProps {
     extraContent?: React.ReactNode
 }
 
-export interface IReNotificationConfig {
-    header?: string
-    description: string,
-    duration?: number,
-    placement?: "topLeft" | "topRight" | "bottomLeft" | "bottomRight",
-    type: "success" | "error" | "info" | "warning",
-}
+
 
 export interface ITabItem {
     title: string | ReactNode;

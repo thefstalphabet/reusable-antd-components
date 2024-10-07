@@ -76,7 +76,7 @@ function ReSelect(props: IProps) {
         onChange={handleOnChange}
         placeholder={placeholder || ""}
       >
-        {dropDownoptions.map((item: ISelectOptions) => {
+        {dropDownoptions?.map((item: ISelectOptions) => {
           const { value, label } = item;
           return <Select.Option value={value}>{label}</Select.Option>;
         })}

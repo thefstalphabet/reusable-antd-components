@@ -1,11 +1,19 @@
 import { Checkbox, Form } from "antd";
-import { ICheckbox } from "../Interfaces/ReComponents.interface";
-
+export interface ICheckbox {
+  label: string;
+  name: string;
+  disable?: boolean;
+  handleClick?: () => void;
+  className?: string;
+  noStyle?: boolean;
+}
 function ReCheckBox(props: ICheckbox) {
-  const { label, name, disable, handleClick } = props;
+  const { label, name, disable, handleClick, className, noStyle } = props;
   return (
-    <Form.Item name={name} valuePropName="checked">
-      <Checkbox disabled={disable} onClick={handleClick}>{label}</Checkbox>
+    <Form.Item noStyle={noStyle} name={name} valuePropName="checked">
+      <Checkbox className={className} disabled={disable} onClick={handleClick}>
+        {label}
+      </Checkbox>
     </Form.Item>
   );
 }

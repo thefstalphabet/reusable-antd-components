@@ -1,12 +1,7 @@
 import { MenuProps } from "antd";
 import { ReactNode } from "react";
 
-export interface ICheckbox {
-    label: string;
-    name: string;
-    disable?: boolean;
-    handleClick?: () => void;
-};
+
 
 export interface IReDrawerProps {
     children: ReactNode;

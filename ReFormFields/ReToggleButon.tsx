@@ -15,7 +15,6 @@ export default function ReToggleButon(props: {
   const {
     label,
     name,
-    disable,
     noStyle,
     formInstance,
     themeColor,
@@ -31,7 +30,7 @@ export default function ReToggleButon(props: {
       valuePropName="checked"
     >
       <label
-        className={`static inline-flex items-center cursor-pointer select-none `}
+        className={`static inline-flex items-center cursor-pointer select-none whitespace-nowrap`}
       >
         <Checkbox
           checked={formInstance.getFieldValue(name)}

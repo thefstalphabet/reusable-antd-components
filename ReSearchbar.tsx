@@ -1,7 +1,6 @@
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Input } from "antd";
 import { useState } from "react";
+import { IoSearch } from "react-icons/io5";
 
 export default function ReSearchbar(props: {
   className?: string;
@@ -32,12 +31,7 @@ export default function ReSearchbar(props: {
         onChange && onChange(e?.target?.value);
       }}
       onPressEnter={handleEnterHits}
-      prefix={
-        <FontAwesomeIcon
-          icon={faMagnifyingGlass}
-          style={{ marginRight: "5px", color: "#bfbfbf" }}
-        />
-      }
+      prefix={<IoSearch style={{ marginRight: "5px", color: "#bfbfbf" }} />}
     />
   );
 }

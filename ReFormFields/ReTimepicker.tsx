@@ -1,5 +1,5 @@
 import { Form, TimePicker } from "antd";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IReTimepickerProps } from "../Interfaces/ReComponents.interface";
 
 function ReTimepicker(props: IReTimepickerProps) {

@@ -56,7 +56,6 @@ export default function ReTable(props: IProps) {
     columns,
     data,
     loading,
-    name,
     pagination,
     scroll,
     className,
@@ -64,8 +63,8 @@ export default function ReTable(props: IProps) {
     header,
   } = props;
 
-  const [newColumns, setNewColumns] = useState<un>([]);
-  const [newData, setNewData] = useState<unknown>([]);
+  const [newColumns, setNewColumns] = useState<any>([]);
+  const [newData, setNewData] = useState<any>([]);
   const [tableLoading, setTableLoading] = useState<boolean>(false);
   const [tableHeight, setTableHeight] = useState<number>(400);
 
@@ -124,7 +123,7 @@ export default function ReTable(props: IProps) {
   const setColumnFilterOption = async (col: any) => {
     let newCol;
     const columnKey = col.key;
-    let isFilterItemGiven = false;
+    // let isFilterItemGiven = false;
     let filterItems;
     let isMapperIsGiven = false;
     let mapper: any;
@@ -211,14 +210,12 @@ export default function ReTable(props: IProps) {
           header?.title
         )}
         <div style={{ display: "grid", gridAutoFlow: "column", gap: "1rem" }}>
-          {header?.headerButtons?.map((btn: IHeaderButtons, index: number) => {
-            const { title, visibility } = btn;
+          {header?.headerButtons?.map((btn: ButtonProps, index: number) => {
+            const { title } = btn;
             return (
-              (visibility || visibility === undefined) && (
-                <Button key={index} {...btn} type="primary">
-                  {title}
-                </Button>
-              )
+              <Button key={index} {...btn} type="primary">
+                {title}
+              </Button>
             );
           })}
         </div>

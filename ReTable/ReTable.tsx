@@ -72,9 +72,12 @@ export default function ReTable(props: IProps) {
     pagination: any,
     filters: any,
     sorter: any
-  ) => {};
+  ) => {
+    console.log(pagination, filters, sorter);
+  };
 
   const setColumnSortingOption = (col: any, index: number) => {
+    console.log(index);
     let newCol;
     const columnKey = col.key;
     if (
@@ -138,7 +141,7 @@ export default function ReTable(props: IProps) {
           if (typeof element === "object" && element.key === columnKey) {
             isColumnKeyPresent = true;
             if (Object.keys(element).includes("items")) {
-              isFilterItemGiven = true;
+              // isFilterItemGiven = true;
               filterItems = element.items;
             }
 
@@ -210,12 +213,14 @@ export default function ReTable(props: IProps) {
           header?.title
         )}
         <div style={{ display: "grid", gridAutoFlow: "column", gap: "1rem" }}>
-          {header?.headerButtons?.map((btn: ButtonProps, index: number) => {
-            const { title } = btn;
+          {header?.headerButtons?.map((btn: any, index: number) => {
+            const { title, visibility } = btn;
             return (
-              <Button key={index} {...btn} type="primary">
-                {title}
-              </Button>
+              (visibility || visibility === undefined) && (
+                <Button key={index} {...btn} type="primary">
+                  {title}
+                </Button>
+              )
             );
           })}
         </div>
